@@ -28,6 +28,8 @@ namespace Catsier.ViewModels {
         //Database
         private DBConnection dbConnection;
         private UserDBContext userDBContext;
+        private ProductDBContext productDBContext;
+        private TransactionDBContext transactionDBContext;
 
         public MainWindowViewModel() {
             dbConnection = new DBConnection();
@@ -36,6 +38,8 @@ namespace Catsier.ViewModels {
             userRepo = new UserRepository();
 
             userDBContext = new UserDBContext(userRepo, dbConnection);
+            productDBContext = new ProductDBContext(productRepo, dbConnection);
+            transactionDBContext = new TransactionDBContext(transactionRepo, dbConnection);
 
             Auth.CreateInstance(userRepo);
             startingView = new StartingViewModel();
@@ -58,7 +62,6 @@ namespace Catsier.ViewModels {
             Mediator.Subscribe("Change View To Edit Product", GoToEditProduct);
             Mediator.Subscribe("Change View To Transaction History", GoToTransactionHistory);
             Mediator.Subscribe("Change View To Sales Recap", GoToSalesRecap);
-            Mediator.Subscribe("Update User Data", UpdateUserData);
             CurrentView = startingView;
         }
 
@@ -107,6 +110,7 @@ namespace Catsier.ViewModels {
 		}
 
         private void GoToProductList(object o) {
+            Mediator.Invoke("Update Product Data");
             CurrentView = listProdukView;
 		}
 
@@ -120,21 +124,21 @@ namespace Catsier.ViewModels {
         }
 
         private void GoToCreateTransaction(object o) {
+            Mediator.Invoke("Update Next Invoice Number");
+            ((CreateTransactionViewModel)createTransactionView).UpdateInvoiceNumber();
             CurrentView = createTransactionView;
 		}
 
         private void GoToTransactionHistory(object o) {
+            Mediator.Invoke("Update Transaction Repository");
             ((TransactionHistoryViewModel)transactionHistoryView).SetData(transactionRepo);
             CurrentView = transactionHistoryView;
 		}
 
         private void GoToSalesRecap(object o) {
+            Mediator.Invoke("Update Transaction Repository");
             ((SalesRecapViewModel)salesRecapView).UpdateData(transactionRepo);
             CurrentView = salesRecapView;
-		}
-
-        private void UpdateUserData(object o) {
-            userDBContext.UpdateUserRepository();
 		}
     }
 }

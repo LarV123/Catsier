@@ -97,6 +97,7 @@ namespace Catsier.ViewModels {
 		}
 
 		private void CariProduk() {
+			Mediator.Invoke("Update Product Data");
 			TransactionItemViewModel.ProductViewModel.Produk = productRepo.FindByCode(kode);
 			if(TransactionItemViewModel.ProductViewModel.Produk == null) {
 				MessageBox.Show("Produk tidak ditemukan", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -113,10 +114,14 @@ namespace Catsier.ViewModels {
 				MessageBox.Show("Tidak ada pembelian apapun", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
 				return;
 			}
+			Mediator.Invoke("Update Next Invoice Number");
+			UpdateInvoiceNumber();
 			transactionRepo.AddTransaction(TransactionViewModel.Transaction);
 			TransactionViewModel.Transaction = transactionRepo.GenerateEmptyTransaction();
 			TransactionViewModel.Kasir = Auth.Instance.LoggedUser.Name;
 			MessageBox.Show("Transaksi disimpan", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
+			Mediator.Invoke("Update Next Invoice Number");
+			UpdateInvoiceNumber();
 		}
 
 		private void BatalkanTransaksi() {
@@ -140,6 +145,10 @@ namespace Catsier.ViewModels {
 			TransactionViewModel.AddTransactionItem(TransactionItemViewModel.TransactionItem);
 			TransactionItemViewModel.TransactionItem = new TransactionItem();
 			OnPropertyChanged("TransactionItemViewModel");
+		}
+
+		public void UpdateInvoiceNumber() {
+			TransactionViewModel.Invoice = transactionRepo.GetNextInvoiceNumber();
 		}
 
 	}

@@ -17,13 +17,14 @@ namespace Catsier.Database {
 			newUserCommand = new AddNewUserCommand(dbConnection);
 			updateUserCommand = new UpdateUserRepositoryCommand(userRepository, dbConnection);
 			userRepo.onNewUser += OnNewUser;
+			Mediator.Subscribe("Update User Data", UpdateUserRepository);
 		}
 
 		public void OnNewUser(User user) {
 			newUserCommand.Execute(user.Name, user.Email, user.HashedPassword);
 		}
 
-		public void UpdateUserRepository() {
+		public void UpdateUserRepository(object o) {
 			updateUserCommand.Execute();
 		}
 

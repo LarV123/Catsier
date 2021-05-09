@@ -128,6 +128,7 @@ namespace Catsier.ViewModels {
 			produk.Kategori = kategori;
 			produk.Modal = modal;
 			produk.Jual = jual;
+			Mediator.Invoke("Update Product", produk);
 			MessageBox.Show("Produk sudah disimpan", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
 		}
 
