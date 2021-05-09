@@ -59,6 +59,9 @@ namespace Catsier.ViewModels {
 		}
 
 		public int Invoice {
+			set {
+				transaction.Invoice = value;
+			}
 			get {
 				return transaction.Invoice;
 			}

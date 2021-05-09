@@ -73,7 +73,7 @@ namespace Catsier.ViewModels {
 				MessageBox.Show("Empty register credentials", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
 				return;
 			}
-			userRepo.Register(Name, Email, SecurePassword);
+			userRepo.Add(Name, Email, SecurePassword);
 			Auth.Instance.Login(Email, SecurePassword);
 			Name = "";
 			Email = "";

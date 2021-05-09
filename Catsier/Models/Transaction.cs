@@ -18,6 +18,9 @@ namespace Catsier.Models {
 		private int invoice;
 
 		public int Invoice {
+			set {
+				invoice = value;
+			}
 			get{
 				return invoice;
 			}
