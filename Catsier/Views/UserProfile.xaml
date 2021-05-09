@@ -12,6 +12,52 @@
         <Image HorizontalAlignment="Left" Height="82" VerticalAlignment="Top" Width="175" Source="/Views/logo_nobg.png" Margin="950,0,0,0"/>
         <Rectangle HorizontalAlignment="Center" Height="702" Margin="0,88,0,0" Stroke="#FFB525CC" VerticalAlignment="Top" Width="1105" Fill="White"/>
         <TextBlock HorizontalAlignment="Left" Margin="42,118,0,0" Text="User" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="36" FontFamily="Global Sans Serif" FontWeight="Bold"/>
-
+        <Label Content="Nama" HorizontalAlignment="Left" Margin="42,187,0,0" VerticalAlignment="Top" FontFamily="Global Sans Serif" FontSize="30" FontWeight="Bold"/>
+        <Rectangle HorizontalAlignment="Left" Height="50" Margin="42,238,0,0" VerticalAlignment="Top" Width="482" Fill="#FFE5E5E5" Stroke="#FFD7E0F7"/>
+        <TextBlock HorizontalAlignment="Left" Margin="50,251,0,0" Text="{Binding Name}" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24" FontFamily="Global Sans Serif"/>
+        <Label Content="Email" HorizontalAlignment="Left" Margin="42,317,0,0" VerticalAlignment="Top" FontFamily="Global Sans Serif" FontSize="30" FontWeight="Bold"/>
+        <Rectangle HorizontalAlignment="Left" Height="52" Margin="42,368,0,0" VerticalAlignment="Top" Width="739" Fill="#FFE5E5E5" Stroke="#FFD7E0F7"/>
+        <TextBlock HorizontalAlignment="Left" Margin="50,381,0,0" Text="{Binding Email}" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24" FontFamily="Global Sans Serif"/>
+        <Label Content="Ubah Password" HorizontalAlignment="Left" Margin="42,463,0,0" VerticalAlignment="Top" FontFamily="Global Sans Serif" FontSize="30" FontWeight="Bold"/>
+        <TextBox x:Name="Pass_Lama" HorizontalAlignment="Left" Margin="50,514,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="731" FontSize="24" FontFamily="Global Sans Serif" Height="39"/>
+        <TextBox x:Name="Pass_Baru" HorizontalAlignment="Left" Margin="50,570,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="731" FontSize="24" FontFamily="Global Sans Serif" Height="40"/>
+        <TextBox x:Name="Pass_Baru_Kon" HorizontalAlignment="Left" Margin="50,628,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="731" FontSize="24" FontFamily="Global Sans Serif" Height="38"/>
+        <Button Content="Ubah" HorizontalAlignment="Left" Margin="828,637,0,0" VerticalAlignment="Top" FontSize="30" Width="197" Background="#FF22CA47" Foreground="White"/>
+        <TextBlock HorizontalAlignment="Left" Margin="62,519,0,0" Text="Password Lama" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="#51000000" FontFamily="Global Sans Serif" FontSize="24" Height="28">
+            <TextBlock.Style>
+                <Style TargetType="{x:Type TextBlock}">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Text, ElementName=Pass_Lama}" Value="">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="62,576,0,0" Text="Password Baru" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="#51000000" FontFamily="Global Sans Serif" FontSize="24" Height="26">
+            <TextBlock.Style>
+                <Style TargetType="{x:Type TextBlock}">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Text, ElementName=Pass_Baru}" Value="">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="62,632,0,0" Text="Konfirmasi Password Baru" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="#51000000" FontFamily="Global Sans Serif" FontSize="24" Height="30">
+            <TextBlock.Style>
+                <Style TargetType="{x:Type TextBlock}">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Text, ElementName=Pass_Baru_Kon}" Value="">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
     </Grid>
 </UserControl>

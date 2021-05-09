@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Security;
 using System.Text;
 using Catsier.Models;
+using Catsier.Security;
 
 namespace Catsier {
 	class Auth {
@@ -15,16 +17,23 @@ namespace Catsier {
 			}
 		}
 
+		private User loggedUser;
+
 		public bool IsLoggedIn {
 			get {
-				return false;
+				return loggedUser != null;
 			}
 		}
 
 		public User LoggedUser {
 			get {
-				return new User();
+				return loggedUser;
 			}
+		}
+
+		public void Login(string email, SecureString password) {
+			//mockup login
+			loggedUser = new User(1, "Natih", email, Hasher.Hash(password));
 		}
 	}
 }

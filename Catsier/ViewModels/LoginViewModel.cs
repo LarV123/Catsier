@@ -41,6 +41,7 @@ namespace Catsier.ViewModels {
 		public ICommand LoginCommand {
 			get {
 				return loginCommand ?? (loginCommand = new RelayCommand((o) => {
+					Auth.Instance.Login(Email, password);
 					Mediator.Invoke("Change View To Dashboard");
 				}));
 			}

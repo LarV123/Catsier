@@ -19,6 +19,9 @@
         <DataTemplate DataType="{x:Type view_model:DashboardViewModel}">
             <view:DashboardView/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type view_model:UserProfileViewModel}">
+            <view:UserProfile/>
+        </DataTemplate>
     </Window.Resources>
 
     <Window.DataContext>

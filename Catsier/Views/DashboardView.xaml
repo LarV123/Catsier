@@ -10,7 +10,7 @@
         <Rectangle HorizontalAlignment="Center" Height="83" VerticalAlignment="Top" Width="1125" Fill="#FFB525CC"/>
         <Image HorizontalAlignment="Left" Height="82" VerticalAlignment="Top" Width="175" Source="/Views/logo_nobg.png"/>
         <Image HorizontalAlignment="Left" Height="64" Margin="625,10,0,0" VerticalAlignment="Top" Width="64" Source="/Views/User.png"/>
-        <TextBlock x:Name="UserName" HorizontalAlignment="Left" Margin="694,24,0,0" Text="TextBlock" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="30" FontFamily="Global Sans Serif" Foreground="White"/>
+        <TextBlock x:Name="UserName" HorizontalAlignment="Left" Margin="694,24,0,0" Text="{Binding Path=Name}" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="30" FontFamily="Global Sans Serif" Foreground="White"/>
         <Image HorizontalAlignment="Left" Height="64" Margin="900,13,0,0" VerticalAlignment="Top" Width="64" Source="/Views/Exit.png"/>
         <TextBlock HorizontalAlignment="Left" Margin="984,24,0,0" Text="Logout" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="30" FontFamily="Global Sans Serif" Foreground="White"/>
         <Button HorizontalAlignment="Left" Margin="304,266,0,0" VerticalAlignment="Top" BorderBrush="{x:Null}" Background="#FFB525CC" Height="110" Width="236">
@@ -25,6 +25,7 @@
         <Button HorizontalAlignment="Right" Margin="0,420,304,0" VerticalAlignment="Top" BorderBrush="{x:Null}" Background="#FFB525CC" Height="110" Width="236">
             <TextBlock Text="Rekapitulasi Penjualan" TextWrapping="Wrap" TextAlignment="Center" FontSize="30" FontFamily="Global Sans Serif" Foreground="White"/>
         </Button>
+        <Button  HorizontalAlignment="Left" Margin="620,10,0,0" Command="{Binding GoToProfileCommand}" VerticalAlignment="Top" Height="64" Width="244" Background="#00000000" BorderBrush="{x:Null}" Foreground="{x:Null}"/>
 
     </Grid>
 </UserControl>
