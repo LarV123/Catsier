@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Views\back.png" />
+    <None Remove="Views\Exit.png" />
+    <None Remove="Views\logo.png" />
+    <None Remove="Views\logo_nobg.png" />
+    <None Remove="Views\User.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Views\back.png" />
+    <Resource Include="Views\Exit.png" />
+    <Resource Include="Views\logo.png" />
+    <Resource Include="Views\logo_nobg.png" />
+    <Resource Include="Views\User.png" />
+  </ItemGroup>
+
+</Project>

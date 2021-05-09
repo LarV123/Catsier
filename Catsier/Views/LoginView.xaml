@@ -1,0 +1,51 @@
+﻿<UserControl x:Class="Catsier.Views.LoginView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Catsier.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="800" d:DesignWidth="1125">
+    <Grid Background="#FFEFEEF8">
+        <Image Margin="382,156,382,390" Source="/Views/logo.png"/>
+        <Rectangle HorizontalAlignment="Center" Height="38" Margin="0,352,0,0" VerticalAlignment="Top" Width="200" Fill="#FFD7E0F6"/>
+        <TextBox x:Name="Email" HorizontalAlignment="Center" Margin="0,362,0,0" Text="{Binding Path=Email}"  TextWrapping="Wrap" VerticalAlignment="Top" Width="182" Background="#FFD7E0F7" BorderBrush="{x:Null}" Height="17" TextAlignment="Left" FontFamily="Global Sans Serif" Foreground="#CC000000" SelectionBrush="Black"/>
+        <TextBlock HorizontalAlignment="Left" Margin="472,362,0,0" Text="Email" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="#51000000" FontFamily="Global Sans Serif">
+            <TextBlock.Style>
+                <Style TargetType="{x:Type TextBlock}">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Text, ElementName=Email}" Value="">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
+        <Rectangle HorizontalAlignment="Center" Height="38" Margin="0,409,0,0" VerticalAlignment="Top" Width="200" Fill="#FFD7E0F6"/>
+        <Button x:Name="Masuk" Content="MASUK" HorizontalAlignment="Center" Margin="0,475,0,0" VerticalAlignment="Top" 
+                Command="{Binding LoginCommand}" Background="#FFB525CC" 
+                BorderBrush="#00707070" Width="104" Height="41" FontFamily="Global Sans Serif" 
+                FontWeight="Bold" FontSize="15" Foreground="White"/>
+        <PasswordBox x:Name="Password" HorizontalAlignment="Center" Margin="0,419,0,0" 
+                     VerticalAlignment="Top" Width="182" Background="#FFD7E0F7" 
+                     BorderBrush="{x:Null}" Height="17" FontFamily="Global Sans Serif" 
+                     Foreground="#CC000000" SelectionBrush="Black"
+                     PasswordChanged="Password_PasswordChanged"/>
+        <TextBlock HorizontalAlignment="Left" Margin="472,419,0,0" Text="Password" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="#51000000" FontFamily="Global Sans Serif">
+            <TextBlock.Style>
+                <Style TargetType="{x:Type TextBlock}">
+                    <Setter Property="Visibility" Value="Visible"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsPasswordEmpty}" Value="True">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding IsPasswordEmpty}" Value="False">
+                            <Setter Property="Visibility" Value="Hidden"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
+    </Grid>
+</UserControl>
