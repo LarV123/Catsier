@@ -13,10 +13,10 @@
         <TextBlock x:Name="UserName" HorizontalAlignment="Left" Margin="694,24,0,0" Text="{Binding Path=Name}" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="30" FontFamily="Global Sans Serif" Foreground="White"/>
         <Image HorizontalAlignment="Left" Height="64" Margin="900,13,0,0" VerticalAlignment="Top" Width="64" Source="/Views/Exit.png"/>
         <TextBlock HorizontalAlignment="Left" Margin="984,24,0,0" Text="Logout" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="30" FontFamily="Global Sans Serif" Foreground="White"/>
-        <Button HorizontalAlignment="Left" Margin="304,266,0,0" VerticalAlignment="Top" BorderBrush="{x:Null}" Background="#FFB525CC" Height="110" Width="236">
+        <Button HorizontalAlignment="Left" Margin="304,266,0,0" Command="{Binding GoToCreateTransactionCommand}" VerticalAlignment="Top" BorderBrush="{x:Null}" Background="#FFB525CC" Height="110" Width="236">
             <TextBlock Text="Transaksi Penjualan" TextWrapping="Wrap" TextAlignment="Center" FontSize="30" FontFamily="Global Sans Serif" Foreground="White"/>
         </Button>
-        <Button HorizontalAlignment="Right" Margin="0,266,304,0" VerticalAlignment="Top" BorderBrush="{x:Null}" Background="#FFB525CC" Height="110" Width="236">
+        <Button HorizontalAlignment="Right" Margin="0,266,304,0" Command="{Binding GoToProductListCommand}"  VerticalAlignment="Top" BorderBrush="{x:Null}" Background="#FFB525CC" Height="110" Width="236">
             <TextBlock Text="Produk" TextWrapping="Wrap" TextAlignment="Center" FontSize="30" FontFamily="Global Sans Serif" Foreground="White"/>
         </Button>
         <Button HorizontalAlignment="Left" Margin="304,420,0,0" VerticalAlignment="Top" BorderBrush="{x:Null}" Background="#FFB525CC" Height="110" Width="236">

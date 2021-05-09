@@ -10,7 +10,7 @@
         <Image Margin="382,156,382,390" Source="/Views/logo.png"/>
         <Rectangle HorizontalAlignment="Center" Height="38" Margin="0,352,0,0" VerticalAlignment="Top" Width="200" Fill="#FFD7E0F6"/>
         <TextBox x:Name="Email" HorizontalAlignment="Center" Margin="0,362,0,0" Text="{Binding Path=Email}"  TextWrapping="Wrap" VerticalAlignment="Top" Width="182" Background="#FFD7E0F7" BorderBrush="{x:Null}" Height="17" TextAlignment="Left" FontFamily="Global Sans Serif" Foreground="#CC000000" SelectionBrush="Black"/>
-        <TextBlock HorizontalAlignment="Left" Margin="472,362,0,0" Text="Email" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="#51000000" FontFamily="Global Sans Serif">
+        <TextBlock HorizontalAlignment="Left" Margin="472,362,0,0" Text="Email" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="#51000000" FontFamily="Global Sans Serif" IsHitTestVisible="False">
             <TextBlock.Style>
                 <Style TargetType="{x:Type TextBlock}">
                     <Setter Property="Visibility" Value="Collapsed"/>
@@ -32,7 +32,7 @@
                      BorderBrush="{x:Null}" Height="17" FontFamily="Global Sans Serif" 
                      Foreground="#CC000000" SelectionBrush="Black"
                      PasswordChanged="Password_PasswordChanged"/>
-        <TextBlock HorizontalAlignment="Left" Margin="472,419,0,0" Text="Password" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="#51000000" FontFamily="Global Sans Serif">
+        <TextBlock HorizontalAlignment="Left" Margin="472,419,0,0" Text="Password" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="#51000000" FontFamily="Global Sans Serif" IsHitTestVisible="False">
             <TextBlock.Style>
                 <Style TargetType="{x:Type TextBlock}">
                     <Setter Property="Visibility" Value="Visible"/>

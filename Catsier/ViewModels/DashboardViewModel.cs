@@ -12,9 +12,28 @@ namespace Catsier.ViewModels {
 			}
 		}
 
+		private ICommand goToProfileCommand;
+
 		public ICommand GoToProfileCommand {
 			get {
-				return new RelayCommand(x => { Mediator.Invoke("Change View To Profile"); });
+				return goToProfileCommand ?? (goToProfileCommand = new RelayCommand(x => { Mediator.Invoke("Change View To Profile"); }));
+			}
+		}
+
+		private ICommand goToProductListCommand;
+
+		public ICommand GoToProductListCommand {
+			get {
+				return goToProductListCommand ?? (goToProductListCommand = new RelayCommand(x => Mediator.Invoke("Change View To Product List")));
+			}
+		}
+
+
+		private ICommand goToCreateTransactionCommand;
+		
+		public ICommand GoToCreateTransactionCommand {
+			get {
+				return goToCreateTransactionCommand ?? (goToCreateTransactionCommand = new RelayCommand(x => Mediator.Invoke("Change View To Create Transaction")));
 			}
 		}
 	}

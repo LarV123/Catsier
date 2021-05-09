@@ -1,0 +1,86 @@
+﻿<UserControl x:Class="Catsier.Views.CreateTransaction"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Catsier.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="800" d:DesignWidth="1125">
+    <Grid Background="#FFEFEEF8">
+        <Rectangle HorizontalAlignment="Center" Height="83" VerticalAlignment="Top" Width="1125" Fill="#FFB525CC"/>
+        <Image HorizontalAlignment="Left" Height="64" Margin="10,17,0,0" VerticalAlignment="Top" Width="64" Source="/Views/back.png"/>
+        <Image HorizontalAlignment="Left" Height="82" VerticalAlignment="Top" Width="175" Source="/Views/logo_nobg.png" Margin="916,0,0,0"/>
+        <Button Content="" HorizontalAlignment="Left" Margin="10,8,0,0" Command="{Binding BackCommand}" VerticalAlignment="Top" Height="66" Width="64" BorderBrush="{x:Null}" Foreground="{x:Null}" Background="#00DDDDDD"/>
+        <Rectangle Margin="10,88,10,10" Fill="White" Stroke="#FFB525CC"/>
+        <Label Content="Kasir" HorizontalAlignment="Left" Margin="52,90,0,0" VerticalAlignment="Top" FontFamily="Global Sans Serif" FontSize="20" FontWeight="Bold"/>
+        <Rectangle HorizontalAlignment="Left" Height="40" Margin="52,129,0,0" VerticalAlignment="Top" Width="317" Fill="#FFE5E5E5"/>
+        <TextBlock HorizontalAlignment="Left" Margin="64,137,0,0" Text="Test" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Global Sans Serif" FontSize="20" Foreground="#CC000000"/>
+        <Label Content="No. Invoice" HorizontalAlignment="Left" Margin="405,90,0,0" VerticalAlignment="Top" FontFamily="Global Sans Serif" FontSize="20" FontWeight="Bold"/>
+        <Rectangle HorizontalAlignment="Left" Height="40" Margin="405,129,0,0" VerticalAlignment="Top" Width="215" Fill="#FFE5E5E5"/>
+        <TextBlock HorizontalAlignment="Left" Margin="417,137,0,0" Text="{Binding Path=TransactionViewModel.Invoice}" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Global Sans Serif" FontSize="20" Foreground="#CC000000"/>
+        <Label Content="Tanggal" HorizontalAlignment="Left" Margin="655,90,0,0" VerticalAlignment="Top" FontFamily="Global Sans Serif" FontSize="20" FontWeight="Bold"/>
+        <TextBox HorizontalAlignment="Left" Margin="655,129,0,0" Text="{Binding Path=TransactionViewModel.Tanggal, StringFormat={}{0:dd/MM/yyyy}}" TextWrapping="Wrap" VerticalAlignment="Top" Width="132" Height="40" Padding="0,2,0,0" FontSize="20"/>
+        <Label Content="Pelanggan" HorizontalAlignment="Left" Margin="820,90,0,0" VerticalAlignment="Top" FontFamily="Global Sans Serif" FontSize="20" FontWeight="Bold"/>
+        <TextBox HorizontalAlignment="Left" Margin="820,129,0,0" Text="{Binding Path=TransactionViewModel.Pelanggan}" TextWrapping="Wrap" VerticalAlignment="Top" Width="271" Height="40" Padding="0,2,0,0" FontSize="20"/>
+        <Label Content="Tambah Pembelian" HorizontalAlignment="Left" Margin="52,226,0,0" VerticalAlignment="Top" FontSize="24" FontFamily="Global Sans Serif" FontWeight="Bold"/>
+        <Rectangle HorizontalAlignment="Left" Height="1" Margin="52,200,0,0" VerticalAlignment="Top" Width="1039" Fill="#FF8D8D8D" RenderTransformOrigin="0.5,0.5">
+            <Rectangle.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleY="-1"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Rectangle.RenderTransform>
+        </Rectangle>
+        <Label Content="Kode Produk" HorizontalAlignment="Left" Margin="64,273,0,0" VerticalAlignment="Top" FontFamily="Global Sans Serif" FontSize="20" FontWeight="Bold"/>
+        <TextBox HorizontalAlignment="Left" Margin="64,312,0,0" Text="{Binding KodeProduk}" TextWrapping="Wrap" VerticalAlignment="Top" Width="215" Height="40" Padding="0,2,0,0" FontSize="20"/>
+        <Button Content="Cari Produk" Command="{Binding CariProdukCommand}" HorizontalAlignment="Left" Margin="297,312,0,0" VerticalAlignment="Top" Height="40" Width="138" Background="#FFB525CC" BorderBrush="{x:Null}" Foreground="White" FontSize="20"/>
+        <Label Content="Kasir" HorizontalAlignment="Left" Margin="52,90,0,0" VerticalAlignment="Top" FontFamily="Global Sans Serif" FontSize="20" FontWeight="Bold"/>
+        <Rectangle HorizontalAlignment="Left" Height="40" Margin="52,129,0,0" VerticalAlignment="Top" Width="317" Fill="#FFE5E5E5"/>
+        <TextBlock HorizontalAlignment="Left" Margin="64,137,0,0" Text="{Binding Path=Kasir}" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Global Sans Serif" FontSize="20" Foreground="#CC000000"/>
+        <Label Content="Produk" HorizontalAlignment="Left" Margin="64,357,0,0" VerticalAlignment="Top" FontFamily="Global Sans Serif" FontSize="20" FontWeight="Bold"/>
+        <Rectangle HorizontalAlignment="Left" Height="40" Margin="64,396,0,0" VerticalAlignment="Top" Width="371" Fill="#FFE5E5E5"/>
+        <TextBlock HorizontalAlignment="Left" Margin="76,404,0,0" Text="{Binding Path=TransactionItemViewModel.ProductViewModel.Nama}" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Global Sans Serif" FontSize="20" Foreground="#CC000000"/>
+        <Label Content="Harga" HorizontalAlignment="Left" Margin="64,444,0,0" VerticalAlignment="Top" FontFamily="Global Sans Serif" FontSize="20" FontWeight="Bold"/>
+        <Rectangle HorizontalAlignment="Left" Height="40" Margin="64,483,0,0" VerticalAlignment="Top" Width="371" Fill="#FFE5E5E5"/>
+        <TextBlock HorizontalAlignment="Left" Margin="76,491,0,0" Text="{Binding Path=TransactionItemViewModel.ProductViewModel.Jual}" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Global Sans Serif" FontSize="20" Foreground="#CC000000"/>
+        <Label Content="Jumlah" HorizontalAlignment="Left" Margin="64,531,0,0" VerticalAlignment="Top" FontFamily="Global Sans Serif" FontSize="20" FontWeight="Bold"/>
+        <TextBox HorizontalAlignment="Left" Margin="64,570,0,0" Text="{Binding TransactionItemViewModel.Jumlah}" TextWrapping="Wrap" VerticalAlignment="Top" Width="371" Height="40" Padding="0,2,0,0" FontSize="20"/>
+        <Label Content="Total" HorizontalAlignment="Left" Margin="64,617,0,0" VerticalAlignment="Top" FontFamily="Global Sans Serif" FontSize="20" FontWeight="Bold"/>
+        <Rectangle HorizontalAlignment="Left" Height="40" Margin="64,656,0,0" VerticalAlignment="Top" Width="371" Fill="#FFE5E5E5"/>
+        <TextBlock HorizontalAlignment="Left" Margin="76,664,0,0" Text="{Binding TransactionItemViewModel.Total}" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Global Sans Serif" FontSize="20" Foreground="#CC000000"/>
+        <Label Content="Daftar Pembelian" HorizontalAlignment="Left" Margin="478,226,0,0" VerticalAlignment="Top" FontSize="24" FontFamily="Global Sans Serif" FontWeight="Bold"/>
+        <ListView Height="246" Margin="478,279,0,0" 
+            VerticalAlignment="Top" ItemsSource="{Binding ProductList}" Foreground="Black" BorderBrush="{x:Null}" FontFamily="Global Sans Serif" FontSize="16" HorizontalAlignment="Left" Width="613">
+            <ListView.View>
+                <GridView x:Name="GridView1">
+                    <GridViewColumn DisplayMemberBinding= "{Binding No}" 
+                        Header="Kode Produk" Width="100"/>
+                    <GridViewColumn DisplayMemberBinding= "{Binding Kode}" 
+                        Header="Nama Produk" Width="120"/>
+                    <GridViewColumn DisplayMemberBinding= "{Binding Nama}" 
+                        Header="Harga" Width="100"/>
+                    <GridViewColumn DisplayMemberBinding= "{Binding Kategori}" 
+                        Header="Jumlah" Width="80"/>
+                    <GridViewColumn DisplayMemberBinding= "{Binding Satuan}" 
+                        Header="Total" Width="100"/>
+                    <GridViewColumn Header="Opsi" Width="120">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Width="50" Height="50" Background="Yellow" Command="{Binding DataContext.EditCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}}" CommandParameter="{Binding}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Rectangle HorizontalAlignment="Left" Height="58" Margin="480,524,0,0" VerticalAlignment="Top" Width="103" Fill="#FFD7E0F7"/>
+        <Rectangle HorizontalAlignment="Left" Height="57" Margin="601,525,0,0" VerticalAlignment="Top" Width="490" Fill="#FFD7E0F7"/>
+        <TextBlock HorizontalAlignment="Left" Margin="491,542,0,0" Text="Total" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20" FontFamily="Global Sans Serif"/>
+        <TextBlock HorizontalAlignment="Left" Margin="618,542,0,0" Text="0000" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20" FontFamily="Global Sans Serif"/>
+        <Button Content="Buat Transaksi" HorizontalAlignment="Left" Margin="900,612,0,0" VerticalAlignment="Top" Height="49" Width="178" Background="#FF22CA47" BorderBrush="{x:Null}" Foreground="White" FontSize="20" FontFamily="Global Sans Serif"/>
+        <Button Content="Buat Transaksi" HorizontalAlignment="Left" Margin="480,612,0,0" VerticalAlignment="Top" Height="49" Width="178" Background="#FFE02451" BorderBrush="{x:Null}" Foreground="White" FontSize="20" FontFamily="Global Sans Serif"/>
+        <Button Content="Tambahkan Produk" HorizontalAlignment="Left" Margin="64,710,0,0" VerticalAlignment="Top" Height="40" Width="371" Background="#FFB525CC" BorderBrush="{x:Null}" Foreground="White" FontSize="20"/>
+    </Grid>
+</UserControl>
