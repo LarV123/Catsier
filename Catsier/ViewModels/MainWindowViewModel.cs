@@ -1,4 +1,5 @@
-﻿using Catsier.Models;
+﻿using Catsier.Database;
+using Catsier.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -24,10 +25,13 @@ namespace Catsier.ViewModels {
         private TransactionRepository transactionRepo;
         private UserRepository userRepo;
 
+        private DBConnection dbConnection;
+
         public MainWindowViewModel() {
             productRepo = new ProductRepository();
             transactionRepo = new TransactionRepository();
             userRepo = new UserRepository();
+            dbConnection = new DBConnection();
             Auth.CreateInstance(userRepo);
             startingView = new StartingViewModel();
             loginView = new LoginViewModel();
