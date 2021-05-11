@@ -15,9 +15,23 @@ namespace Catsier.Models {
 			set;
 		}
 
+		public TransactionItem() { Jumlah = 1; }
+
 		public TransactionItem(Product product, int jumlah) {
 			Product = product;
 			Jumlah = jumlah;
+		}
+
+		public long Total {
+			get {
+				return Jumlah * Product.Jual;
+			}
+		}
+
+		public long TotalProfit {
+			get {
+				return Jumlah * Product.Profit;
+			}
 		}
 
 	}

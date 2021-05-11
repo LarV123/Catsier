@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 using Catsier.Models;
 
@@ -18,6 +19,12 @@ namespace Catsier.ViewModels {
 				OnPropertyChanged("Tanggal");
 				OnPropertyChanged("Pelanggan");
 				OnPropertyChanged("Invoice");
+				Items.Clear();
+				foreach (TransactionItem transactionItem in transaction.items) {
+					Items.Add(new TransactionItemViewModel(transactionItem));
+				}
+				OnPropertyChanged("Items");
+				OnPropertyChanged("Total");
 			}
 		}
 
@@ -57,6 +64,43 @@ namespace Catsier.ViewModels {
 			}
 		}
 
+		public long Total {
+			get {
+				long total = 0;
+				foreach (TransactionItemViewModel item in Items) {
+					total += item.Total;
+				}
+				return total;
+			}
+		}
+
+		public ObservableCollection<TransactionItemViewModel> Items {
+			get;
+			set;
+		}
+
+		public TransactionViewModel() {
+			Items = new ObservableCollection<TransactionItemViewModel>();
+		}
+
+		public TransactionViewModel(Transaction transaction) {
+			Items = new ObservableCollection<TransactionItemViewModel>();
+			Transaction = transaction;
+		}
+
+		public void AddTransactionItem(TransactionItem item) {
+			Items.Add(new TransactionItemViewModel(item));
+			transaction.Add(item);
+			OnPropertyChanged("Items");
+			OnPropertyChanged("Total");
+		}
+
+		public void RemoveTransactionItem(TransactionItemViewModel item) {
+			Items.Remove(item);
+			transaction.Remove(item.TransactionItem);
+			OnPropertyChanged("Items");
+			OnPropertyChanged("Total");
+		}
 		
 	}
 }

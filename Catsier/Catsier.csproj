@@ -8,6 +8,8 @@
 
   <ItemGroup>
     <None Remove="Views\back.png" />
+    <None Remove="Views\Delete.png" />
+    <None Remove="Views\Edit.png" />
     <None Remove="Views\Exit.png" />
     <None Remove="Views\logo.png" />
     <None Remove="Views\logo_nobg.png" />
@@ -15,16 +17,20 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="DotNetProjects.WpfToolkit.DataVisualization" Version="6.0.90" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Reference Include="MySql.Data">
       <HintPath>..\..\..\..\..\..\Program Files (x86)\MySQL\MySQL Connector Net 8.0.23\Assemblies\v4.5.2\MySql.Data.dll</HintPath>
-    </Reference>
-    <Reference Include="MySql.Data.EntityFramework">
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\MySQL\MySQL Connector Net 8.0.23\Assemblies\v4.5.2\MySql.Data.EntityFramework.dll</HintPath>
+      <Private>true</Private>
     </Reference>
   </ItemGroup>
 
   <ItemGroup>
     <Resource Include="Views\back.png" />
+    <Resource Include="Views\Delete.png" />
+    <Resource Include="Views\Edit.png" />
     <Resource Include="Views\Exit.png" />
     <Resource Include="Views\logo.png" />
     <Resource Include="Views\logo_nobg.png" />

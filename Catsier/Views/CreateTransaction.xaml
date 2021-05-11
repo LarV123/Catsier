@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Catsier.Views"
+             xmlns:validator="clr-namespace:Catsier.Validators"
              mc:Ignorable="d" 
              d:DesignHeight="800" d:DesignWidth="1125">
     <Grid Background="#FFEFEEF8">
@@ -19,7 +20,7 @@
         <Rectangle HorizontalAlignment="Left" Height="40" Margin="405,129,0,0" VerticalAlignment="Top" Width="215" Fill="#FFE5E5E5"/>
         <TextBlock HorizontalAlignment="Left" Margin="417,137,0,0" Text="{Binding Path=TransactionViewModel.Invoice}" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Global Sans Serif" FontSize="20" Foreground="#CC000000"/>
         <Label Content="Tanggal" HorizontalAlignment="Left" Margin="655,90,0,0" VerticalAlignment="Top" FontFamily="Global Sans Serif" FontSize="20" FontWeight="Bold"/>
-        <TextBox HorizontalAlignment="Left" Margin="655,129,0,0" Text="{Binding Path=TransactionViewModel.Tanggal, StringFormat={}{0:dd/MM/yyyy}}" TextWrapping="Wrap" VerticalAlignment="Top" Width="132" Height="40" Padding="0,2,0,0" FontSize="20"/>
+        <TextBox HorizontalAlignment="Left" Margin="655,129,0,0" Text="{Binding Path=TransactionViewModel.Tanggal, StringFormat={}{0:MM/dd/yyyy}}" TextWrapping="Wrap" VerticalAlignment="Top" Width="132" Height="40" Padding="0,2,0,0" FontSize="20"/>
         <Label Content="Pelanggan" HorizontalAlignment="Left" Margin="820,90,0,0" VerticalAlignment="Top" FontFamily="Global Sans Serif" FontSize="20" FontWeight="Bold"/>
         <TextBox HorizontalAlignment="Left" Margin="820,129,0,0" Text="{Binding Path=TransactionViewModel.Pelanggan}" TextWrapping="Wrap" VerticalAlignment="Top" Width="271" Height="40" Padding="0,2,0,0" FontSize="20"/>
         <Label Content="Tambah Pembelian" HorizontalAlignment="Left" Margin="52,226,0,0" VerticalAlignment="Top" FontSize="24" FontFamily="Global Sans Serif" FontWeight="Bold"/>
@@ -44,31 +45,39 @@
         <TextBlock HorizontalAlignment="Left" Margin="76,404,0,0" Text="{Binding Path=TransactionItemViewModel.ProductViewModel.Nama}" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Global Sans Serif" FontSize="20" Foreground="#CC000000"/>
         <Label Content="Harga" HorizontalAlignment="Left" Margin="64,444,0,0" VerticalAlignment="Top" FontFamily="Global Sans Serif" FontSize="20" FontWeight="Bold"/>
         <Rectangle HorizontalAlignment="Left" Height="40" Margin="64,483,0,0" VerticalAlignment="Top" Width="371" Fill="#FFE5E5E5"/>
-        <TextBlock HorizontalAlignment="Left" Margin="76,491,0,0" Text="{Binding Path=TransactionItemViewModel.ProductViewModel.Jual}" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Global Sans Serif" FontSize="20" Foreground="#CC000000"/>
+        <TextBlock HorizontalAlignment="Left" Margin="76,491,0,0" Text="{Binding Path=TransactionItemViewModel.ProductViewModel.Jual, StringFormat={}{0:C2}, ConverterCulture='id-ID'}" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Global Sans Serif" FontSize="20" Foreground="#CC000000"/>
         <Label Content="Jumlah" HorizontalAlignment="Left" Margin="64,531,0,0" VerticalAlignment="Top" FontFamily="Global Sans Serif" FontSize="20" FontWeight="Bold"/>
-        <TextBox HorizontalAlignment="Left" Margin="64,570,0,0" Text="{Binding TransactionItemViewModel.Jumlah}" TextWrapping="Wrap" VerticalAlignment="Top" Width="371" Height="40" Padding="0,2,0,0" FontSize="20"/>
+        <TextBox HorizontalAlignment="Left" Margin="64,570,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="371" Height="40" Padding="0,2,0,0" FontSize="20">
+            <TextBox.Text>
+                <Binding Path="TransactionItemViewModel.Jumlah">
+                    <Binding.ValidationRules>
+                        <validator:JumlahValidationRule />
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
         <Label Content="Total" HorizontalAlignment="Left" Margin="64,617,0,0" VerticalAlignment="Top" FontFamily="Global Sans Serif" FontSize="20" FontWeight="Bold"/>
         <Rectangle HorizontalAlignment="Left" Height="40" Margin="64,656,0,0" VerticalAlignment="Top" Width="371" Fill="#FFE5E5E5"/>
-        <TextBlock HorizontalAlignment="Left" Margin="76,664,0,0" Text="{Binding TransactionItemViewModel.Total}" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Global Sans Serif" FontSize="20" Foreground="#CC000000"/>
+        <TextBlock HorizontalAlignment="Left" Margin="76,664,0,0" Text="{Binding TransactionItemViewModel.Total, StringFormat={}{0:C2}, ConverterCulture='id-ID'}" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Global Sans Serif" FontSize="20" Foreground="#CC000000"/>
         <Label Content="Daftar Pembelian" HorizontalAlignment="Left" Margin="478,226,0,0" VerticalAlignment="Top" FontSize="24" FontFamily="Global Sans Serif" FontWeight="Bold"/>
         <ListView Height="246" Margin="478,279,0,0" 
-            VerticalAlignment="Top" ItemsSource="{Binding ProductList}" Foreground="Black" BorderBrush="{x:Null}" FontFamily="Global Sans Serif" FontSize="16" HorizontalAlignment="Left" Width="613">
+            VerticalAlignment="Top" ItemsSource="{Binding Path=TransactionViewModel.Items}" Foreground="Black" BorderBrush="{x:Null}" FontFamily="Global Sans Serif" FontSize="16" HorizontalAlignment="Left" Width="613">
             <ListView.View>
                 <GridView x:Name="GridView1">
-                    <GridViewColumn DisplayMemberBinding= "{Binding No}" 
+                    <GridViewColumn DisplayMemberBinding= "{Binding Path=ProductViewModel.Kode}" 
                         Header="Kode Produk" Width="100"/>
-                    <GridViewColumn DisplayMemberBinding= "{Binding Kode}" 
+                    <GridViewColumn DisplayMemberBinding= "{Binding Path=ProductViewModel.Nama}" 
                         Header="Nama Produk" Width="120"/>
-                    <GridViewColumn DisplayMemberBinding= "{Binding Nama}" 
+                    <GridViewColumn DisplayMemberBinding= "{Binding Path=ProductViewModel.Jual, StringFormat={}{0:C2}, ConverterCulture='id-ID'}" 
                         Header="Harga" Width="100"/>
-                    <GridViewColumn DisplayMemberBinding= "{Binding Kategori}" 
+                    <GridViewColumn DisplayMemberBinding= "{Binding Path=Jumlah}" 
                         Header="Jumlah" Width="80"/>
-                    <GridViewColumn DisplayMemberBinding= "{Binding Satuan}" 
+                    <GridViewColumn DisplayMemberBinding= "{Binding Path=Total, StringFormat={}{0:C2}, ConverterCulture='id-ID'}" 
                         Header="Total" Width="100"/>
                     <GridViewColumn Header="Opsi" Width="120">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Width="50" Height="50" Background="Yellow" Command="{Binding DataContext.EditCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}}" CommandParameter="{Binding}"/>
+                                <Button Width="50" Height="50" Background="Red" Command="{Binding DataContext.HapusProdukCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}}" CommandParameter="{Binding}"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
@@ -78,9 +87,9 @@
         <Rectangle HorizontalAlignment="Left" Height="58" Margin="480,524,0,0" VerticalAlignment="Top" Width="103" Fill="#FFD7E0F7"/>
         <Rectangle HorizontalAlignment="Left" Height="57" Margin="601,525,0,0" VerticalAlignment="Top" Width="490" Fill="#FFD7E0F7"/>
         <TextBlock HorizontalAlignment="Left" Margin="491,542,0,0" Text="Total" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20" FontFamily="Global Sans Serif"/>
-        <TextBlock HorizontalAlignment="Left" Margin="618,542,0,0" Text="0000" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20" FontFamily="Global Sans Serif"/>
-        <Button Content="Buat Transaksi" HorizontalAlignment="Left" Margin="900,612,0,0" VerticalAlignment="Top" Height="49" Width="178" Background="#FF22CA47" BorderBrush="{x:Null}" Foreground="White" FontSize="20" FontFamily="Global Sans Serif"/>
-        <Button Content="Buat Transaksi" HorizontalAlignment="Left" Margin="480,612,0,0" VerticalAlignment="Top" Height="49" Width="178" Background="#FFE02451" BorderBrush="{x:Null}" Foreground="White" FontSize="20" FontFamily="Global Sans Serif"/>
-        <Button Content="Tambahkan Produk" HorizontalAlignment="Left" Margin="64,710,0,0" VerticalAlignment="Top" Height="40" Width="371" Background="#FFB525CC" BorderBrush="{x:Null}" Foreground="White" FontSize="20"/>
+        <TextBlock HorizontalAlignment="Left" Margin="618,542,0,0" Text="{Binding Path=TransactionViewModel.Total, StringFormat={}{0:C2}, ConverterCulture='id-ID'}" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20" FontFamily="Global Sans Serif"/>
+        <Button Content="Buat Transaksi" Command="{Binding BuatTransaksiCommand}" HorizontalAlignment="Left" Margin="900,612,0,0" VerticalAlignment="Top" Height="49" Width="178" Background="#FF22CA47" BorderBrush="{x:Null}" Foreground="White" FontSize="20" FontFamily="Global Sans Serif"/>
+        <Button Content="Batalkan Transaksi" Command="{Binding BatalkanTransaksiCommand}" HorizontalAlignment="Left" Margin="480,612,0,0" VerticalAlignment="Top" Height="49" Width="178" Background="#FFE02451" BorderBrush="{x:Null}" Foreground="White" FontSize="20" FontFamily="Global Sans Serif"/>
+        <Button Content="Tambahkan Produk" Command="{Binding TambahProdukCommand}" HorizontalAlignment="Left" Margin="64,710,0,0" VerticalAlignment="Top" Height="40" Width="371" Background="#FFB525CC" BorderBrush="{x:Null}" Foreground="White" FontSize="20"/>
     </Grid>
 </UserControl>

@@ -7,6 +7,7 @@ using System.Windows.Input;
 namespace Catsier.ViewModels {
 	class MainWindowViewModel : ViewModelBase {
         private ICommand gotoLoginView;
+        private ICommand gotoRegisterView;
         private object currentView;
         private object startingView;
         private object loginView;
@@ -15,12 +16,19 @@ namespace Catsier.ViewModels {
         private object listProdukView;
         private object createProductView;
         private object createTransactionView;
+        private object editProductView;
+        private object transactionHistoryView;
+        private object registerView;
+        private object salesRecapView;
         private ProductRepository productRepo;
         private TransactionRepository transactionRepo;
+        private UserRepository userRepo;
 
         public MainWindowViewModel() {
             productRepo = new ProductRepository();
             transactionRepo = new TransactionRepository();
+            userRepo = new UserRepository();
+            Auth.CreateInstance(userRepo);
             startingView = new StartingViewModel();
             loginView = new LoginViewModel();
             dashboardView = new DashboardViewModel();
@@ -28,11 +36,19 @@ namespace Catsier.ViewModels {
             listProdukView = new ListProductViewModel(productRepo);
             createProductView = new CreateProductViewModel(productRepo);
             createTransactionView = new CreateTransactionViewModel(transactionRepo, productRepo);
+            editProductView = new EditProductViewModel();
+            transactionHistoryView = new TransactionHistoryViewModel();
+            registerView = new RegisterViewModel(userRepo);
+            salesRecapView = new SalesRecapViewModel();
+            Mediator.Subscribe("Change View To Start", GoToStart);
             Mediator.Subscribe("Change View To Dashboard", GoToDasboard);
             Mediator.Subscribe("Change View To Profile", GoToProfile);
             Mediator.Subscribe("Change View To Product List", GoToProductList);
             Mediator.Subscribe("Change View To Create Product", GoToCreateProduct);
             Mediator.Subscribe("Change View To Create Transaction", GoToCreateTransaction);
+            Mediator.Subscribe("Change View To Edit Product", GoToEditProduct);
+            Mediator.Subscribe("Change View To Transaction History", GoToTransactionHistory);
+            Mediator.Subscribe("Change View To Sales Recap", GoToSalesRecap);
             CurrentView = startingView;
         }
 
@@ -53,28 +69,57 @@ namespace Catsier.ViewModels {
             }
         }
 
+        public ICommand GoToRegisterViewCommand {
+			get {
+                return gotoRegisterView ?? (gotoRegisterView = new RelayCommand(x => GoToRegister())); 
+			}
+		}
+
+        private void GoToStart(object o) {
+            CurrentView = startingView;
+		}
+
         private void GoToLoginView() {
             CurrentView = loginView;
         }
 
-        private void GoToDasboard() {
+        private void GoToRegister() {
+            CurrentView = registerView;
+        }
+
+        private void GoToDasboard(object o) {
             CurrentView = dashboardView;
 		}
 
-        private void GoToProfile() {
+        private void GoToProfile(object o) {
             CurrentView = profileView;
 		}
 
-        private void GoToProductList() {
+        private void GoToProductList(object o) {
             CurrentView = listProdukView;
 		}
 
-        private void GoToCreateProduct() {
+        private void GoToCreateProduct(object o) {
             CurrentView = createProductView;
+        }
+
+        private void GoToEditProduct(object o) {
+            ((EditProductViewModel)editProductView).Produk = (Product)o;
+            CurrentView = editProductView;
+        }
+
+        private void GoToCreateTransaction(object o) {
+            CurrentView = createTransactionView;
 		}
 
-        private void GoToCreateTransaction() {
-            CurrentView = createTransactionView;
+        private void GoToTransactionHistory(object o) {
+            ((TransactionHistoryViewModel)transactionHistoryView).SetData(transactionRepo);
+            CurrentView = transactionHistoryView;
+		}
+
+        private void GoToSalesRecap(object o) {
+            ((SalesRecapViewModel)salesRecapView).UpdateData(transactionRepo);
+            CurrentView = salesRecapView;
 		}
     }
 }

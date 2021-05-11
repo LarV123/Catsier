@@ -36,5 +36,33 @@ namespace Catsier.ViewModels {
 				return goToCreateTransactionCommand ?? (goToCreateTransactionCommand = new RelayCommand(x => Mediator.Invoke("Change View To Create Transaction")));
 			}
 		}
+
+		private ICommand goToTransactionHistoryCommand;
+
+		public ICommand GoToTransactionHistoryCommand {
+			get {
+				return goToTransactionHistoryCommand ?? (goToTransactionHistoryCommand = new RelayCommand(x => Mediator.Invoke("Change View To Transaction History")));
+			}
+		}
+
+		private ICommand goToSalesRecapCommand;
+
+		public ICommand GoToSalesRecapCommand {
+			get {
+				return goToSalesRecapCommand ?? (goToSalesRecapCommand = new RelayCommand(x => Mediator.Invoke("Change View To Sales Recap")));
+			}
+		}
+
+		private ICommand logoutCommand;
+
+		public ICommand LogoutCommand {
+			get {
+				return logoutCommand ?? (logoutCommand = new RelayCommand(x => Logout()));
+			}
+		}
+
+		private void Logout() {
+			Auth.Instance.Logout();
+		}
 	}
 }

@@ -25,7 +25,7 @@ namespace Catsier.ViewModels {
 			}
 		}
 
-		private string email;
+		private string email = "";
 		public string Email {
 			get {
 				return email;
@@ -41,7 +41,17 @@ namespace Catsier.ViewModels {
 		public ICommand LoginCommand {
 			get {
 				return loginCommand ?? (loginCommand = new RelayCommand((o) => {
+					if(Email == "" || IsPasswordEmpty) {
+						MessageBox.Show("Empty login credentials", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+						return;
+					}
 					Auth.Instance.Login(Email, password);
+					if(Auth.Instance.LoggedUser == null) {
+						MessageBox.Show("Wrong email or password", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
+						return;
+					}
+					Email = "";
+					isPasswordEmpty = true;
 					Mediator.Invoke("Change View To Dashboard");
 				}));
 			}

@@ -6,81 +6,90 @@ using System.Text;
 namespace Catsier.ViewModels {
 	class ProductViewModel : ViewModelBase{
 		
-		private Product product;
+		private Product produk;
 
-		public Product Product {
+		public Product Produk {
 			get {
-				return product;
+				return produk;
 			}
 			set {
-				product = value;
+				produk = value;
 				OnPropertyChanged("Nama");
 				OnPropertyChanged("Kode");
 				OnPropertyChanged("Kategori");
 				OnPropertyChanged("Satuan");
 				OnPropertyChanged("Modal");
 				OnPropertyChanged("Jual");
+				OnPropertyChanged("Produk");
 			}
 		}
 
 		public string Nama {
 			get {
-				return product != null ? product.Nama : "";
+				return produk != null ? produk.Nama : "";
 			}
 			set {
-				product.Nama = value;
+				produk.Nama = value;
 				OnPropertyChanged("Nama");
 			}
 		}
 
 		public string Kode {
 			get {
-				return product != null ? product.Kode : "";
+				return produk != null ? produk.Kode : "";
 			}
 			set {
-				product.Kode = value;
+				produk.Kode = value;
 				OnPropertyChanged("Kode");
 			}
 		}
 
 		public string Kategori {
 			get {
-				return product != null ? product.Kategori : "";
+				return produk != null ? produk.Kategori : "";
 			}
 			set {
-				product.Kategori = value;
+				produk.Kategori = value;
 				OnPropertyChanged("Kategori");
 			}
 		}
 
 		public string Satuan {
 			get {
-				return product != null ? product.Satuan : "";
+				return produk != null ? produk.Satuan : "";
 			}
 			set {
-				product.Satuan = value;
+				produk.Satuan = value;
 				OnPropertyChanged("Satuan");
 			}
 		}
 
-		public int Modal {
+		public uint Modal {
 			get {
-				return product != null ? product.Modal : 0;
+				return produk != null ? produk.Modal : 0;
 			}
 			set {
-				product.Modal = value;
+				produk.Modal = value;
 				OnPropertyChanged("Modal");
 			}
 		}
 
-		public int Jual {
+		public uint Jual {
 			get {
-				return product != null ? product.Jual : 0;
+				return produk != null ? produk.Jual : 0;
 			}
 			set {
-				product.Jual = value;
+				produk.Jual = value;
 				OnPropertyChanged("Jual");
 			}
+		}
+
+		public ProductViewModel() {
+
+		}
+
+		public ProductViewModel(Product produk) {
+			Produk = produk;
 		}
 
 	}

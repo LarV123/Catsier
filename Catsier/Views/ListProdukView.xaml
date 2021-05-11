@@ -29,20 +29,24 @@
                                 Header="Kategori" Width="120"/>
                     <GridViewColumn DisplayMemberBinding= "{Binding Satuan}" 
                                 Header="Satuan" Width="120"/>
-                    <GridViewColumn DisplayMemberBinding= "{Binding Modal}" 
+                    <GridViewColumn DisplayMemberBinding= "{Binding Modal, StringFormat={}{0:C2}, ConverterCulture='id-ID'}" 
                                 Header="Modal" Width="120"/>
-                    <GridViewColumn DisplayMemberBinding= "{Binding Jual}" 
+                    <GridViewColumn DisplayMemberBinding= "{Binding Jual, StringFormat={}{0:C2}, ConverterCulture='id-ID'}" 
                                 Header="Jual" Width="110"/>
                     <GridViewColumn Header="Opsi" Width="120">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <DockPanel>
-                                    <Button Width="50" Height="50" Background="Yellow" Command="{Binding Path=DataContext.EditCommand, RelativeSource=
+                                    <Button Width="50" Height="50" Background="#EDB116" Command="{Binding Path=DataContext.EditCommand, RelativeSource=
                                    {RelativeSource FindAncestor, 
-                                   AncestorType={x:Type ItemsControl}}}" CommandParameter="{Binding}"/>
-                                    <Button Width="50" Height="50" Background="Red" Command="{Binding Path=DataContext.DeleteCommand, RelativeSource=
+                                   AncestorType={x:Type ItemsControl}}}" CommandParameter="{Binding}">
+                                       <Image Source="/Views/Edit.png"/>
+                                    </Button>
+                                    <Button Width="50" Height="50" Background="#E02451" Command="{Binding Path=DataContext.DeleteCommand, RelativeSource=
                                    {RelativeSource FindAncestor, 
-                                   AncestorType={x:Type ItemsControl}}}" CommandParameter="{Binding}"/>
+                                   AncestorType={x:Type ItemsControl}}}" CommandParameter="{Binding}">
+                                        <Image Source="/Views/Delete.png"/>
+                                    </Button>
                                 </DockPanel>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>

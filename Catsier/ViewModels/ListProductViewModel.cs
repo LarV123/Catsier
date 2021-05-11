@@ -19,7 +19,7 @@ namespace Catsier.ViewModels {
 
 		public ICommand BackCommand {
 			get {
-				return new RelayCommand(x => Mediator.Invoke("Change View To Dashboard"));
+				return new RelayCommand(x => Mediator.Invoke("Change View To Dashboard", null));
 			}
 		}
 
@@ -64,10 +64,14 @@ namespace Catsier.ViewModels {
 		}
 
 		private void Edit(ListProductItemViewModel viewModel) {
-			MessageBox.Show("Editing " + viewModel.Kode);
+			Mediator.Invoke("Change View To Edit Product", viewModel.Product);
 		}
 
 		private void Delete(ListProductItemViewModel viewModel) {
+			var res = MessageBox.Show("Apakah kamu yakin untuk menghapus produk ini ?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question);
+			if(res == MessageBoxResult.No) {
+				return;
+			}
 			repo.RemoveProduct(viewModel.Kode);
 		}
 
@@ -78,7 +82,7 @@ namespace Catsier.ViewModels {
 		}
 
 		private void GoToCreateProduct() {
-			Mediator.Invoke("Change View To Create Product");
+			Mediator.Invoke("Change View To Create Product", null);
 		}
 	}
 }

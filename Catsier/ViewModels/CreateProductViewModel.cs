@@ -12,8 +12,8 @@ namespace Catsier.ViewModels {
 		public string Nama { get; set; }
 		public string Satuan { get; set; }
 		public string Kategori { get; set; }
-		public int Modal { get; set; }
-		public int Jual { get; set; }
+		public uint Modal { get; set; }
+		public uint Jual { get; set; }
 
 		private ICommand backCommand;
 
@@ -35,10 +35,36 @@ namespace Catsier.ViewModels {
 
 		public CreateProductViewModel(ProductRepository productRepo) {
 			productRepository = productRepo;
+			Kode = "";
+			Nama = "";
+			Satuan = "";
+			Kategori = "";
+			Modal = 0;
+			Jual = 0;
 		}
 
 		private void Create() {
-			productRepository.AddProduct(new Product(Kode, Nama, Kategori, Satuan, Modal, Jual));
+			if(Kode == "") {
+				MessageBox.Show("Kode Produk tidak dapat kosong", "Required Field", MessageBoxButton.OK, MessageBoxImage.Error);
+				return;
+			}
+			if (Nama == "") {
+				MessageBox.Show("Nama Produk tidak dapat kosong", "Required Field", MessageBoxButton.OK, MessageBoxImage.Error);
+				return;
+			}
+			if (Satuan == "") {
+				MessageBox.Show("Satuan Produk tidak dapat kosong", "Required Field", MessageBoxButton.OK, MessageBoxImage.Error);
+				return;
+			}
+			if (Kategori == "") {
+				MessageBox.Show("Kategori Produk tidak dapat kosong", "Required Field", MessageBoxButton.OK, MessageBoxImage.Error);
+				return;
+			}
+			bool isSuccesful = productRepository.AddProduct(new Product(Kode, Nama, Kategori, Satuan, Modal, Jual));
+			if (!isSuccesful) {
+				MessageBox.Show("Terdapat duplikat kode produk", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+				return;
+			}
 			Kode = "";
 			Nama = "";
 			Satuan = "";
@@ -51,6 +77,7 @@ namespace Catsier.ViewModels {
 			OnPropertyChanged("Kategori");
 			OnPropertyChanged("Modal");
 			OnPropertyChanged("Jual");
+			MessageBox.Show("Produk sudah disimpan", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
 		}
 
 		private void GoToListProduct() {

@@ -19,13 +19,13 @@
         <Button HorizontalAlignment="Right" Margin="0,266,304,0" Command="{Binding GoToProductListCommand}"  VerticalAlignment="Top" BorderBrush="{x:Null}" Background="#FFB525CC" Height="110" Width="236">
             <TextBlock Text="Produk" TextWrapping="Wrap" TextAlignment="Center" FontSize="30" FontFamily="Global Sans Serif" Foreground="White"/>
         </Button>
-        <Button HorizontalAlignment="Left" Margin="304,420,0,0" VerticalAlignment="Top" BorderBrush="{x:Null}" Background="#FFB525CC" Height="110" Width="236">
+        <Button HorizontalAlignment="Left" Margin="304,420,0,0" Command="{Binding GoToTransactionHistoryCommand}" VerticalAlignment="Top" BorderBrush="{x:Null}" Background="#FFB525CC" Height="110" Width="236">
             <TextBlock Text="Riwayat Transaksi" TextWrapping="Wrap" TextAlignment="Center" FontSize="30" FontFamily="Global Sans Serif" Foreground="White"/>
         </Button>
-        <Button HorizontalAlignment="Right" Margin="0,420,304,0" VerticalAlignment="Top" BorderBrush="{x:Null}" Background="#FFB525CC" Height="110" Width="236">
+        <Button HorizontalAlignment="Right" Margin="0,420,304,0" VerticalAlignment="Top" Command="{Binding GoToSalesRecapCommand}" BorderBrush="{x:Null}" Background="#FFB525CC" Height="110" Width="236">
             <TextBlock Text="Rekapitulasi Penjualan" TextWrapping="Wrap" TextAlignment="Center" FontSize="30" FontFamily="Global Sans Serif" Foreground="White"/>
         </Button>
         <Button  HorizontalAlignment="Left" Margin="620,10,0,0" Command="{Binding GoToProfileCommand}" VerticalAlignment="Top" Height="64" Width="244" Background="#00000000" BorderBrush="{x:Null}" Foreground="{x:Null}"/>
-
+        <Button  HorizontalAlignment="Left" Margin="900,9,0,0" Command="{Binding LogoutCommand}" VerticalAlignment="Top" Height="64" Width="213" Background="#00000000" BorderBrush="{x:Null}" Foreground="{x:Null}"/>
     </Grid>
 </UserControl>

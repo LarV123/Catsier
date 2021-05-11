@@ -31,6 +31,18 @@
         <DataTemplate DataType="{x:Type view_model:CreateTransactionViewModel}">
             <view:CreateTransaction/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type view_model:EditProductViewModel}">
+            <view:EditProductView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type view_model:TransactionHistoryViewModel}">
+            <view:RiwayatTransaksiView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type view_model:RegisterViewModel}">
+            <view:RegisterView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type view_model:SalesRecapViewModel}">
+            <view:SalesRecapView/>
+        </DataTemplate>
     </Window.Resources>
 
     <Window.DataContext>

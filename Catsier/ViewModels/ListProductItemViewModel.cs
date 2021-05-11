@@ -7,6 +7,11 @@ namespace Catsier.ViewModels {
 	class ListProductItemViewModel : ViewModelBase {
 		private int no;
 		private Product product;
+		public Product Product {
+			get {
+				return product;
+			}
+		}
 		public int No {
 			get {
 				return no;
@@ -36,12 +41,12 @@ namespace Catsier.ViewModels {
 				return product.Satuan;
 			}
 		}
-		public int Modal {
+		public uint Modal {
 			get {
 				return product.Modal;
 			}
 		}
-		public int Jual {
+		public uint Jual {
 			get {
 				return product.Jual;
 			}

@@ -13,14 +13,15 @@ namespace Catsier.Models {
 			products = new List<Product>();
 		}
 
-		public void AddProduct(Product newProduct) {
+		public bool AddProduct(Product newProduct) {
 			foreach(Product product in products) {
 				if(product.Kode == newProduct.Kode) {
-					throw new Exception("New product code is not uniqe");
+					return false;
 				}
 			}
 			products.Add(newProduct);
 			OnProductListChange();
+			return true;
 		}
 
 		public void RemoveProduct(Product product) {

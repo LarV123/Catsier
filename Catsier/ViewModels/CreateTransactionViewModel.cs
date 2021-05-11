@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Text;
 using Catsier.Models;
 using System.Windows.Input;
+using System.Windows;
 
 namespace Catsier.ViewModels {
 	class CreateTransactionViewModel : ViewModelBase{
@@ -52,7 +53,7 @@ namespace Catsier.ViewModels {
 
 		public ICommand HapusProdukCommand {
 			get {
-				return hapusProdukCommand ?? (hapusProdukCommand = new RelayCommand<ListProductItemViewModel>(x => HapusProduk(x)));
+				return hapusProdukCommand ?? (hapusProdukCommand = new RelayCommand<TransactionItemViewModel>(x => HapusProduk(x)));
 			}
 		}
 
@@ -84,7 +85,6 @@ namespace Catsier.ViewModels {
 
 		#endregion
 
-		private ObservableCollection<ListProductItemViewModel> itemList = new ObservableCollection<ListProductItemViewModel>();
 		private TransactionRepository transactionRepo;
 		private ProductRepository productRepo;
 
@@ -97,23 +97,49 @@ namespace Catsier.ViewModels {
 		}
 
 		private void CariProduk() {
-			TransactionItemViewModel.ProductViewModel.Product = productRepo.FindByCode(kode);
+			TransactionItemViewModel.ProductViewModel.Produk = productRepo.FindByCode(kode);
+			if(TransactionItemViewModel.ProductViewModel.Produk == null) {
+				MessageBox.Show("Produk tidak ditemukan", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
+			}
+			KodeProduk = "";
 		}
 
 		private void BuatTransaksi() {
-
+			if(TransactionViewModel.Pelanggan == "") {
+				MessageBox.Show("Nama pelanggan kosong", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+				return;
+			}
+			if(TransactionViewModel.Total == 0) {
+				MessageBox.Show("Tidak ada pembelian apapun", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+				return;
+			}
+			transactionRepo.AddTransaction(TransactionViewModel.Transaction);
+			TransactionViewModel.Transaction = transactionRepo.GenerateEmptyTransaction();
+			TransactionViewModel.Kasir = Auth.Instance.LoggedUser.Name;
+			MessageBox.Show("Transaksi disimpan", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
 		}
 
 		private void BatalkanTransaksi() {
-
+			var res = MessageBox.Show("Apakah kamu yakin ?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question);
+			if(res == MessageBoxResult.No) {
+				return;
+			}
+			TransactionViewModel.Transaction = transactionRepo.GenerateEmptyTransaction();
+			TransactionViewModel.Kasir = Auth.Instance.LoggedUser.Name;
 		}
 
-		private void HapusProduk(ListProductItemViewModel model) {
-			
+		private void HapusProduk(TransactionItemViewModel model) {
+			TransactionViewModel.RemoveTransactionItem(model);
 		}
 
 		private void TambahProduk() {
-
+			if(TransactionItemViewModel.ProductViewModel.Produk == null) {
+				MessageBox.Show("Cari produk terlebih dahulu", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
+				return;
+			}
+			TransactionViewModel.AddTransactionItem(TransactionItemViewModel.TransactionItem);
+			TransactionItemViewModel.TransactionItem = new TransactionItem();
+			OnPropertyChanged("TransactionItemViewModel");
 		}
 
 	}

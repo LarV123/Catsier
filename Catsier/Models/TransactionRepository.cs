@@ -21,5 +21,9 @@ namespace Catsier.Models {
 			transactions.Add(transaction);
 			invoiceNumber++;
 		}
+
+		public Transaction[] GetTransactions() {
+			return transactions.ToArray();
+		}
 	}
 }

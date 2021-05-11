@@ -13,7 +13,8 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Image Margin="342,90,343,400" Source="/Views/logo.png" Grid.Column="1"/>
-        <Button x:Name="Daftar" Content="DAFTAR" HorizontalAlignment="Left" Margin="340,376,0,0" VerticalAlignment="Top" Background="#FFB525CC" BorderBrush="#00707070" Width="180" Height="71" Grid.Column="1" FontFamily="Global Sans Serif" FontWeight="Bold" FontSize="15" Foreground="White"/>
+        <Button x:Name="Daftar" Content="DAFTAR" HorizontalAlignment="Left" Margin="340,376,0,0" Command="{Binding DataContext.GoToRegisterViewCommand, RelativeSource=
+    {RelativeSource AncestorType={x:Type Window}}, Mode=OneWay}" VerticalAlignment="Top" Background="#FFB525CC" BorderBrush="#00707070" Width="180" Height="71" Grid.Column="1" FontFamily="Global Sans Serif" FontWeight="Bold" FontSize="15" Foreground="White"/>
         <Button x:Name="Masuk" Content="MASUK" HorizontalAlignment="Right" Margin="0,376,340,0" VerticalAlignment="Top" Background="#FFB525CC" BorderBrush="#00707070" Width="179" Height="71" Grid.Column="1" FontFamily="Global Sans Serif" FontWeight="Bold" FontSize="15" Command="{Binding DataContext.GoToLoginViewCommand, RelativeSource=
     {RelativeSource AncestorType={x:Type Window}}, Mode=OneWay}" Foreground="White"/>
     </Grid>

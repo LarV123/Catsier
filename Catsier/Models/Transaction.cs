@@ -33,10 +33,16 @@ namespace Catsier.Models {
 		public Transaction(int invoice) {
 			items = new List<TransactionItem>();
 			this.invoice = invoice;
+			Tanggal = DateTime.Now;
+			Pelanggan = "";
 		}
 
 		public void Add(Product product, int jumlah) {
 			items.Add(new TransactionItem(product, jumlah));
+		}
+
+		public void Add(TransactionItem transactionItem) {
+			items.Add(transactionItem);
 		}
 
 		public void Remove(TransactionItem transaksiItem) {
