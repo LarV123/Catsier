@@ -25,13 +25,18 @@ namespace Catsier.ViewModels {
         private TransactionRepository transactionRepo;
         private UserRepository userRepo;
 
+        //Database
         private DBConnection dbConnection;
+        private UserDBContext userDBContext;
 
         public MainWindowViewModel() {
+            dbConnection = new DBConnection();
             productRepo = new ProductRepository();
             transactionRepo = new TransactionRepository();
             userRepo = new UserRepository();
-            dbConnection = new DBConnection();
+
+            userDBContext = new UserDBContext(userRepo, dbConnection);
+
             Auth.CreateInstance(userRepo);
             startingView = new StartingViewModel();
             loginView = new LoginViewModel();
@@ -53,6 +58,7 @@ namespace Catsier.ViewModels {
             Mediator.Subscribe("Change View To Edit Product", GoToEditProduct);
             Mediator.Subscribe("Change View To Transaction History", GoToTransactionHistory);
             Mediator.Subscribe("Change View To Sales Recap", GoToSalesRecap);
+            Mediator.Subscribe("Update User Data", UpdateUserData);
             CurrentView = startingView;
         }
 
@@ -84,6 +90,7 @@ namespace Catsier.ViewModels {
 		}
 
         private void GoToLoginView() {
+            Mediator.Invoke("Update User Data");
             CurrentView = loginView;
         }
 
@@ -124,6 +131,10 @@ namespace Catsier.ViewModels {
         private void GoToSalesRecap(object o) {
             ((SalesRecapViewModel)salesRecapView).UpdateData(transactionRepo);
             CurrentView = salesRecapView;
+		}
+
+        private void UpdateUserData(object o) {
+            userDBContext.UpdateUserRepository();
 		}
     }
 }
